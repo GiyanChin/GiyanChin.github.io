@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="GiyanChin">
+
+
+
+
+
+
+
+<title>小身材大能量：hp MicroServer Gen8改造全记录 | Shadowingo&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 7.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Shadowingo&#39;s Blog.
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+        </div>
+        <div class="post-title">
+            
+            
+                小身材大能量：hp MicroServer Gen8改造全记录
+            
+            
+        </div>
+        <span class="post-date">
+            1月 2, 2025
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/DSC_4547.JPG" class="" title="DSC_4547">
+
+<br />
+
+
+
+<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>作为频道第一篇硬件介绍，我想选择Gen8，因为它够经典，由于本人从2017年开始就拥有了Gen8，但当时只购买了机箱，使用了ITX底座改造成比较新的平台，一直沿用至今。由于Gen8的颜值还有独特的iLo，所以在2024年正式斥资从闲鱼购入成色比较新的Gen8，正式开始原汁原味的Gen8改造之旅。</p>
+<br />
+
+
+
+<h5 id="购买篇"><a href="#购买篇" class="headerlink" title="购买篇"></a>购买篇</h5><p>其实MicroServer Gen8我拥有了两台，但都是痴迷于它的外观，因为真的很帅，还有优秀的做工，我都是用来自改平台使用，多年后的今天突然萌生想体验一下它的原装感觉，打开咸鱼，昔日巅峰保值王者，在2024年也跌价不少，平均在600~700之间，我选择了个好成色的，850到付，包装不错，就是面板有条细痕，吊牌不在了，iLo登录密码还在背面，没有什么氧化（最后大坑，4个托盘收我50元，第一次听见买Gen8硬盘托盘另外算，而且螺丝还不全）</p>
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/2.jpg" class="" width="2">
+
+
+
+<br />
+
+
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-02_15-27-17.jpg" class="" title="photo_2025-01-02_15-27-17">
+
+
+
+<br />
+
+<h5 id="改造篇"><a href="#改造篇" class="headerlink" title="改造篇"></a>改造篇</h5><p>到手开机一下，iLo版本4.0，bios版本2015年，后续查了一下可以升级最新的，淘宝购买了一个iLo高级许可证继续用。众所周知，Gen8第一大麻烦点，就是SATA默认启动。由于自己使用习惯，已经跳过了ESXi,PVE等虚拟化平台，直接干就上Windows Server。参考了网上各位大神，解决办法分别有硬改SATA5变SATA1，这种损耗改装我自己风格是不允许的，后续还了解到插u盘&#x2F;tf卡，引导时候修改Grub引导，可以跳开SATA1~SATA4笼子，直接从SATA5启动，坏处就是添加减少HDD，换了操作系统就要重新修改引导，总比前者好，匆忙加上Samsung 850evo SSD，启动系统。</p>
+<br />
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/3.jpg" class="" width="3">
+
+<br />
+
+
+
+<p>默认系统配置是G1610T，2G纯ECC内存，满足低功耗，低发热的思路，官方原装品质没有毛病，就是在2024年看来就不是性能低下来概括了。升级思路是这样的，尽可能在C204芯片组升级到最顶，因为平台过于老旧，就算升级到最顶其实也满足不到现今的性能需求，对应的消费级芯片组是B75、Z77的SNB时代，CPU我选在E3 1240v2和E3 1265Lv2之间选择，一个低电压，一个标压，性能上面肯定是标压胜利，但根据拥有两次魔改GEN8机箱的经验，这散热能力捉襟见肘，求稳还是选择了E3 1265Lv2，散热器胆小，直接上镰刀，本来是打算找官方65w的双热管散热+自制风扇，但全网已经没了，所以这个有主动散热四热管还是很不错的。内存直接闲鱼选择官方smart认证的8G两条。一切上面顶格。</p>
+<br />
+
+
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-02_15-27-27.jpg" class="" title="photo_2025-01-02_15-27-27">
+
+<p>E3 1265Lv2 跟Gen8目前是最绝配</p>
+<br />
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-02_15-27-42.jpg" class="" title="photo_2025-01-02_15-27-42">
+
+<p>4热管散热 风扇上吹，因为无温控，直接接入5v低速吹着，45W足以</p>
+<br />
+
+
+
+<p>硬件配置升级完毕，下面就对拓展进行升级，面对只有一条PCIE3.0 16x，留给我可以选择的不多，Gen8是NAS的首选，作为NAS需要拓展的有两个方面，一个是网络，Gen8自带两个千兆网卡，可以考虑网络聚合、SMB叠加态等用尽2G的带宽，但根据我之前的经验，聚合需要交换机支持，我手头上没有，SMB3.0叠加的话会不稳定，内网ip众多。基于在今年10月时候升级了万兆电口内网环境，所以上一个万兆网卡比是必要的，然后就是SSD拓展，用于加载缓存提高读写性能，满足万兆的上限。</p>
+<p>思路是有了，但PCIE就只有一条，所以我浏览一起下前人的经验。</p>
+<br />
+
+
+
+<p>根据：</p>
+<p><a target="_blank" rel="noopener" href="https://www.chiphell.com/forum.php?mod=viewthread&tid=2582831"><strong>HP GEN8万兆+RAID卡双PCIE设备无损改装——低成本CPU自带PCIE拆分方案</strong></a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/andy_wsj/article/details/142966773"><strong>老机MicroServer Gen8再玩 OCP万兆光口+IT直通</strong></a></p>
+<br />
+
+<p>前人们的实践，首先要首先两个东西，第一个就是PCIE拆分，毕竟只有一条x16做不了什么，第二个就是用OCP实现多设备集成到单SLOT，这样gen8才能完美兼容。</p>
+<br />
+
+<p>最初心里面动手就是把PCIE 16x拆分成8x+4x+4x，用闲鱼上面商家的，一条OCP拓展，两个nvme拓展，这样就挺完美了，加个OCP网卡就可以实现nvme+万兆的组合了。但事与愿违，按照上面前辈的CPU硬解短接方式，只能实现8x+8x的拆分方式，在8x+4x+4x时候出现了卡在了bios启动，循环重启，不死心，通过查看Intel ARK资料，证明E3 1265Lv2是支持8x+4x+4x模式，上网求助，升级bios到最新2019年的。操作了几次，发现故障依旧，然后热心的机友们都回答过，的确在实现8x+4x+4x时候会失败，仅限Gen8这个机子，成功的例子就只有8x+8x，估计是bios设计时候压根就没有想过这个吧。</p>
+<br />
+
+
+
+<p>既然只能8x+8x，那么可以选择的配置不多，然而上面有位前辈在玩Gen8的路途上真的走了很远，它自己手搓了一个8+8的双OCP拓展卡，第一个8x接入万兆OCP网卡，第二个8x接入一个LSI2308的OCP直通卡，这样就可以拓展了SATA&#x2F;SAS的能力了，这样ssd的拓展能力就转到SATA规格上面，最重要的是可以解放了主板自带SATA默认启动顺序，引入了SAS的平价HDD，降低了整体的成本也提升了性能。所以二话不说就闲鱼联系上这位手搓达人，购买了一块OCP拓展卡。</p>
+<br />
+
+
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/DSC_4571.JPG" class="" title="DSC_4571">
+
+
+
+<br />
+
+<p>网卡我是电口的，闲鱼也有卖家售卖Tyan的OCP2.0 x550t2原厂intel网卡，价格还不错，直接入手，题外话，这个OCP的兼容性是比较玄学的，不同的OCP拓展卡跟设备有可能有几率是不兼容，我入手时候没有想那么多直接买了，幸好能直接点亮，第二个OCP就跟前辈们一样，上了一个LSI2308直通卡。</p>
+<br />
+
+
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-03_16-13-38.jpg" class="" title="photo_2025-01-03_16-13-38">
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-03_16-13-35.jpg" class="" title="photo_2025-01-03_16-13-35">
+
+
+
+<p>泰安X550t2电口</p>
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-03_16-13-41.jpg" class="" title="photo_2025-01-03_16-13-41">
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-03_16-13-44.jpg" class="" title="photo_2025-01-03_16-13-44">
+
+
+
+<p>LSI 2308 OCP MAZZ，这东西便宜，就几十块，随便造</p>
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-02_15-28-30.jpg" class="" title="photo_2025-01-02_15-28-30">
+
+
+
+<p>实际上机，位置真的刚刚好，佩服手搓老哥，把位置都填满的，就喜欢ITX这种充实的感觉。</p>
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-02_15-28-51.jpg" class="" title="photo_2025-01-02_15-28-51">
+
+
+
+<p>装上静音avc4010风扇，开机上电，完美~</p>
+<p>实际输出LSI2308直通卡接上Gen8自带8654接口，这样就让Gen8的硬盘笼直接支持SAS硬盘。</p>
+<p>然后通过购买两条安费诺Mini SAS转SATA1转4阵列卡数据线，反向把主板原装的SATA1~SATA4输出成SATA接口，用于接上SSD做系统盘，这样就不必担心引导问题，可以直接从SATA1引导，跑满6.0G的速度，值得注意就是由于Gen8已经比较老旧，SATA3.0就仅限SATA1&#x2F;2两个口，剩余的都是SATA2.0速度。至此整机就拓展出2个SATA3.0、3个SATA2.0，8个SATA&#x2F;SAS接口，非常充裕。</p>
+<br />
+
+
+
+<img src="/2025/01/02/Gen8%E6%94%B9%E9%80%A0%E5%85%A8%E8%AE%B0%E5%BD%95/photo_2025-01-02_15-28-35.jpg" class="" title="photo_2025-01-02_15-28-35">
+
+
+
+<p>X550T2的屁股挡板是我本身最头痛的事情，碰巧我手上有正式版PCIE的X550T2，拿出它的半高挡板，配合双OCP拓展卡，虽然有一点点错位，但螺丝上好之后外观非常优雅，没有半点魔改的痕迹。</p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2025/07/21/Hexo%E5%91%BD%E4%BB%A4/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2024/10/28/Intro/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+                Powered by Shadowingo Email:shadowingo.chin@gmail.com
+                <br>
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
